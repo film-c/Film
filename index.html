@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="utf-8">
+    <title>เกมโต้วาที: เล่นเกมดีไหม</title>
+    <script src="https://cdn.jsdelivr.net/gh/tmedwards/sugarcube-2/dist/2.34.1/sugarcube.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tmedwards/sugarcube-2/dist/2.34.1/sugarcube.min.css">
+</head>
+<body>
+<tw-storydata name="เกมโต้วาที" startnode="1" creator="Twine" creator-version="2.34.1" ifid="" format="SugarCube" format-version="2.34.1">
+    <style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
+        /* คุณสามารถเพิ่ม CSS ตรงนี้เพื่อปรับรูปแบบ */
+        body { font-family: sans-serif; }
+    </style>
+    <script role="script" id="twine-user-script" type="text/twine-javascript">
+        /* คุณสามารถเพิ่ม JavaScript ตรงนี้ถ้าต้องการ */
+    </script>
+
+    <!-- StoryInit -->
+    <tw-passagedata pid="1" name="StoryInit" tags="" position="100,100">
+<<set $credYou = 0>><<set $credFriend = 0>><<set $round = 1>><<set $maxRounds = 5>><<set $topic = "เล่นเกมดีไหม">>
+    </tw-passagedata>
+
+    <!-- Start -->
+    <tw-passagedata pid="2" name="Start" tags="" position="300,100">
+คุณและเพื่อนจะเริ่มโต้วาทีเรื่อง “&lt;&lt;print $topic&gt;&gt;” กัน<br>
+&lt;&lt;link "เริ่มโต้วาที"&gt;&gt;&lt;&lt;goto "Round1"&gt;&gt;&lt;&lt;/link&gt;&gt;
+    </tw-passagedata>
+
+    <!-- Round1 -->
+    <tw-passagedata pid="3" name="Round1" tags="" position="500,100">
+&lt;&lt;if $round &gt; $maxRounds&gt;&gt;
+    &lt;&lt;goto "EndGame"&gt;&gt;
+&lt;&lt;else&gt;&gt;
+    &lt;&lt;set _speaker = ($round % 2 ? "you" : "friend")&gt;&gt;
+    &lt;&lt;if _speaker is "you"&gt;&gt;
+        คุณพูดก่อน: “การเล่นเกมช่วยฝึกสมองนะ”&lt;br&gt;
+    &lt;&lt;else&gt;&gt;
+        ฝ่ายเพื่อนพูด: “แต่เกมใช้เวลามากเกินไปจนเสียเวลาเรียน”&lt;br&gt;
+    &lt;&lt;/if&gt;&gt;
+    <br>
+    **เลือกคำตอบของคุณ**<br>
+    [[โต้ว่า: เกมแค่พักผ่อนไม่นับ|Round1]][<</link>]<br>
+    [[โต้ว่า: งานต้องมาก่อนเกม|Round1]][<</link>]<br>
+    [[หนุน: เกมพัฒนาทักษะ|Round1]][<</link>]<br>
+    [[จบการโต้แย้ง|EndGame]]
+&lt;&lt;/if&gt;&gt;
+    </tw-passagedata>
+
+    <!-- EndGame -->
+    <tw-passagedata pid="4" name="EndGame" tags="" position="700,100">
+&lt;&lt;if $credYou &gt; $credFriend&gt;&gt;
+    🎉 คุณชนะการโต้วาที! 🎉<br>
+&lt;&lt;elseif $credFriend &gt; $credYou&gt;&gt;
+    😢 คุณแพ้ในการโต้วาที 😢<br>
+&lt;&lt;else&gt;&gt;
+    🤝 เสมอกัน 🤝<br>
+&lt;&lt;/if&gt;&gt;
+<br>
+[[เล่นใหม่|Start]]
+    </tw-passagedata>
+</tw-storydata>
+</body>
+</html>
